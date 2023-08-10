@@ -1,0 +1,5 @@
+/snap/clion/248/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/248/bin/ninja/linux/x64/ninja -G Ninja -S /home/lu/solveBAL -B /home/lu/solveBAL/build
+-- Found Glog: /usr/include  
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/lu/solveBAL/build
