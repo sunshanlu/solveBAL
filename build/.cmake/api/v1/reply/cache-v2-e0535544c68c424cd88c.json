@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/lu/solveBAL/build"
+			"value" : "/home/lu/Project/solveBAL/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/lu/solveBAL/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/lu/Project/solveBAL/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/lu/solveBAL"
+			"value" : "/home/lu/Project/solveBAL"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1594,18 +1594,6 @@
 			"value" : "G2O_TYPES_SLAM3D_DEBUG-NOTFOUND"
 		},
 		{
-			"name" : "GLOG_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for GLOG."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/usr/lib/x86_64-linux-gnu/cmake/glog"
-		},
-		{
 			"name" : "GLOG_INCLUDE_DIR",
 			"properties" : 
 			[
@@ -1674,18 +1662,6 @@
 			"value" : "/usr/local/lib/cmake/fmt"
 		},
 		{
-			"name" : "gflags_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for gflags."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/usr/lib/x86_64-linux-gnu/cmake/gflags"
-		},
-		{
 			"name" : "solveBAL_BINARY_DIR",
 			"properties" : 
 			[
@@ -1695,7 +1671,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/lu/solveBAL/build"
+			"value" : "/home/lu/Project/solveBAL/build"
 		},
 		{
 			"name" : "solveBAL_IS_TOP_LEVEL",
@@ -1719,7 +1695,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/lu/solveBAL"
+			"value" : "/home/lu/Project/solveBAL"
 		}
 	],
 	"kind" : "cache",
