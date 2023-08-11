@@ -24,6 +24,7 @@ add_executable(
         src/PoseVertex.cpp
         src/PosePointEdge.cpp
         include/PosePointEdge.h
+        src/VertexAndEdge.cpp
 )
 target_link_libraries(
         ${PROJECT_NAME}

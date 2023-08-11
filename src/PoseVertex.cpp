@@ -28,7 +28,23 @@ void PoseVertex::oplusImpl(const number_t *v)
     _estimate.camParams += camParamUpdate;
 }
 
+
+Eigen::Matrix3d hat(const Eigen::Vector3d &vectorR)
+{
+    Eigen::Matrix3d vectorRHat;
+    vectorRHat << 0, -vectorR(2), vectorR(1),
+            vectorR(2), 0, -vectorR(0),
+            -vectorR(1), vectorR(0), 0;
+    return vectorRHat;
+}
+
+
 Eigen::Matrix3d angleAxis2R(const Eigen::Vector3d &angleAxis)
 {
-    return Eigen::Matrix3d::Zero();
+    double theta = angleAxis.norm();
+    Eigen::Matrix3d R =
+            std::cos(theta) * Eigen::Matrix3d::Identity() +
+            (1 - std::cos(theta)) * angleAxis * angleAxis.transpose() + sin(theta) * hat(angleAxis);
+
+    return R;
 }
