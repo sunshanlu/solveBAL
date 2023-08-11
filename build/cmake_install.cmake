@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: /home/rookie-lu/Project/solveBAL
+=======
+# Install script for directory: /home/lu/Project/solveBAL
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +54,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "/home/rookie-lu/Project/solveBAL/build/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "/home/lu/Project/solveBAL/build/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

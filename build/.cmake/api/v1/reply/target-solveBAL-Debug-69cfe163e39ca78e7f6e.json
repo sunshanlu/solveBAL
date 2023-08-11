@@ -62,8 +62,13 @@
 			"includes" : 
 			[
 				{
+<<<<<<< HEAD:build/.cmake/api/v1/reply/target-solveBAL-Debug-69cfe163e39ca78e7f6e.json
 					"backtrace" : 3,
 					"path" : "/home/rookie-lu/Project/solveBAL/include"
+=======
+					"backtrace" : 8,
+					"path" : "/home/lu/Project/solveBAL/include"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/target-solveBAL-Debug-2316dea81f2c72466ad4.json
 				},
 				{
 					"backtrace" : 3,

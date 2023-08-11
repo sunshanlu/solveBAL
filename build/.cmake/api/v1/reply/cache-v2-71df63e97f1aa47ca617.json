@@ -55,7 +55,11 @@
 				}
 			],
 			"type" : "INTERNAL",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
 			"value" : "/home/rookie-lu/Project/solveBAL/build"
+=======
+			"value" : "/home/lu/Project/solveBAL/build"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +547,11 @@
 				}
 			],
 			"type" : "STATIC",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
 			"value" : "/home/rookie-lu/Project/solveBAL/build/CMakeFiles/pkgRedirects"
+=======
+			"value" : "/home/lu/Project/solveBAL/build/CMakeFiles/pkgRedirects"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +611,11 @@
 				}
 			],
 			"type" : "INTERNAL",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
 			"value" : "/home/rookie-lu/Project/solveBAL"
+=======
+			"value" : "/home/lu/Project/solveBAL"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1650,6 +1662,21 @@
 			"value" : "TRUE"
 		},
 		{
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
+=======
+			"name" : "fmt_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for fmt."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/lib/cmake/fmt"
+		},
+		{
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 			"name" : "solveBAL_BINARY_DIR",
 			"properties" : 
 			[
@@ -1659,7 +1686,11 @@
 				}
 			],
 			"type" : "STATIC",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
 			"value" : "/home/rookie-lu/Project/solveBAL/build"
+=======
+			"value" : "/home/lu/Project/solveBAL/build"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 		},
 		{
 			"name" : "solveBAL_IS_TOP_LEVEL",
@@ -1683,7 +1714,11 @@
 				}
 			],
 			"type" : "STATIC",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/cache-v2-71df63e97f1aa47ca617.json
 			"value" : "/home/rookie-lu/Project/solveBAL"
+=======
+			"value" : "/home/lu/Project/solveBAL"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/cache-v2-e0535544c68c424cd88c.json
 		}
 	],
 	"kind" : "cache",

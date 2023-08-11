@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "solveBAL",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "solveBAL::@6890427a1f51a3e7e1df",
+<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-6c1d5ba033c0efd4b2f9.json
+					"jsonFile" : "target-solveBAL-Debug-69cfe163e39ca78e7f6e.json",
+=======
+					"jsonFile" : "target-solveBAL-Debug-2316dea81f2c72466ad4.json",
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/codemodel-v2-3cb619bd6d0f39171834.json
+					"name" : "solveBAL",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+<<<<<<< HEAD:build/.cmake/api/v1/reply/codemodel-v2-6c1d5ba033c0efd4b2f9.json
+		"build" : "/home/rookie-lu/Project/solveBAL/build",
+		"source" : "/home/rookie-lu/Project/solveBAL"
+=======
+		"build" : "/home/lu/Project/solveBAL/build",
+		"source" : "/home/lu/Project/solveBAL"
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d:build/.cmake/api/v1/reply/codemodel-v2-3cb619bd6d0f39171834.json
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

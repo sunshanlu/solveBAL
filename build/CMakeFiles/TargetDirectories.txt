@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 /home/rookie-lu/Project/solveBAL/build/CMakeFiles/solveBAL.dir
 /home/rookie-lu/Project/solveBAL/build/CMakeFiles/edit_cache.dir
 /home/rookie-lu/Project/solveBAL/build/CMakeFiles/rebuild_cache.dir
+=======
+/home/lu/Project/solveBAL/build/CMakeFiles/solveBAL.dir
+/home/lu/Project/solveBAL/build/CMakeFiles/edit_cache.dir
+/home/lu/Project/solveBAL/build/CMakeFiles/rebuild_cache.dir
+>>>>>>> 3046d74b4c7f43d1943a09dbab212cdecc15e49d
