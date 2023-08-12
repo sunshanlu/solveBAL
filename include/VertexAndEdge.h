@@ -30,9 +30,10 @@ public:
 
 private:
 
-    void addPointVertex(SparseOptimizer &graph);
 
     void addPoseVertex(SparseOptimizer &graph);
+
+    void addPointVertex(SparseOptimizer &graph);
 
     void addEdge(SparseOptimizer &graph);
 

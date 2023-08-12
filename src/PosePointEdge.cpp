@@ -12,19 +12,18 @@ bool PosePointEdge::write(std::ostream &os) const
 
 void PosePointEdge::computeError()
 {
-    const auto *pointVertex = dynamic_cast<const PointVertex *>(_vertices[1]);
-    const auto *poseVertex = dynamic_cast<const PoseVertex *>(_vertices[0]);
+    auto *pointVertex = dynamic_cast<PointVertex *>(_vertices[1]);
+    auto *poseVertex = dynamic_cast<PoseVertex *>(_vertices[0]);
 
-    const auto camParams = poseVertex->estimate().camParams;
-    const auto f = camParams.x();
-    const auto k1 = camParams.y();
-    const auto k2 = camParams.z();
+    auto &camParams = poseVertex->estimate().camParams;
+    auto &f = camParams.x();
+    auto &k1 = camParams.y();
+    auto &k2 = camParams.z();
 
     Eigen::Vector3d cameraPoint = poseVertex->estimate().pose * pointVertex->estimate();
     Eigen::Vector2d point2d = reProjection(cameraPoint, f, k1, k2);
 
-    _error = point2d - error();
-
+    _error = point2d - _measurement;
 }
 
 
@@ -37,7 +36,7 @@ Eigen::Vector2d reProjection(const Eigen::Vector3d &cameraPoint, const double &f
             point3d.x(), point3d.y()
     );
     double r = point2d.norm();
-    double distortCoef = (1 + k1 * std::pow(r, 2) + k2 * std::pow(r, 4));
+    double distortCoef = (1.0 + k1 * std::pow(r, 2.0) + k2 * std::pow(r, 4.0));
     point2d *= distortCoef;
     // step 3: Pixel coordinate system
     point2d *= f;

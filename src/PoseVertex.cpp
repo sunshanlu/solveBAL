@@ -18,13 +18,13 @@ void PoseVertex::setToOriginImpl()
 
 void PoseVertex::oplusImpl(const number_t *v)
 {
-    Eigen::Vector3d angleAxis = Eigen::Vector3d::Map(v);
-    Eigen::Vector3d t = Eigen::Vector3d::Map(v + 3);
-    Eigen::Vector3d camParamUpdate = Eigen::Vector3d::Map(v + 6);
-    Eigen::Matrix3d R = angleAxis2R(angleAxis);
+    using Vector6d = Eigen::Matrix<double, 6, 1>;
+    Vector6d updatePose;
+    updatePose << v[0], v[1], v[2], v[3], v[4], v[5];
+    Eigen::Vector3d camParamUpdate;
+    camParamUpdate << v[6], v[7], v[8];
 
-    Sophus::SE3d updatePose(R, t);
-    _estimate.pose = updatePose * _estimate.pose;
+    _estimate.pose = Sophus::SE3d::exp(updatePose) * _estimate.pose;
     _estimate.camParams += camParamUpdate;
 }
 
@@ -47,4 +47,19 @@ Eigen::Matrix3d angleAxis2R(const Eigen::Vector3d &angleAxis)
             (1 - std::cos(theta)) * angleAxis * angleAxis.transpose() + sin(theta) * hat(angleAxis);
 
     return R;
+}
+
+
+Eigen::Quaterniond angleAxis2Q(const Eigen::Vector3d &angleAxis)
+{
+    double theta = angleAxis.norm();
+    double sinHalfTheta = std::sin(theta / 2);
+
+    double data[4];
+
+    data[3] = std::cos(theta / 2);
+    data[0] = angleAxis(0) * sinHalfTheta;
+    data[1] = angleAxis(1) * sinHalfTheta;
+    data[2] = angleAxis(2) * sinHalfTheta;
+    return Eigen::Quaterniond(data);
 }

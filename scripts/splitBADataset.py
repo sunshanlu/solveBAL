@@ -22,18 +22,22 @@ if __name__ == '__main__':
 
         # write the camera pose information to the CamVertexFile.txt
         with open(camVertexFile, "w", encoding="utf8") as camVertexF:
+            idx = 0
             for i in range(16):
                 writeStr = ''
                 for j in range(9):
-                    writeStr += camParamsData[16 * j + j].strip() + "\t"
+                    writeStr += camParamsData[idx].strip() + "\t"
+                    idx += 1
                 writeStr += "\n"
                 camVertexF.write(writeStr)
 
         # write the point in the world coordinate system to the PointVertexFile.txt
         with open(pointVertexFile, "w", encoding="utf8") as pointVertexF:
+            idx = 0
             for i in range(22106):
                 writeStr = ""
                 for j in range(3):
-                    writeStr += pointsData[22106 * j + j].strip() + "\t"
+                    writeStr += pointsData[idx].strip() + "\t"
+                    idx += 1
                 writeStr += "\n"
                 pointVertexF.write(writeStr)

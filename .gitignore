@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Ignore .idea
+.idea/
+
+# Ignore build
+build/

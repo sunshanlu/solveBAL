@@ -3,11 +3,14 @@
 #include "PointVertex.h"
 #include "PoseVertex.h"
 #include "PosePointEdge.h"
+#include "g2o/core/robust_kernel_impl.h"
 
 std::istream &operator>>(std::istream &is, Eigen::Vector3d &point3d)
 {
     double px, py, pz;
-    is >> px >> py >> pz;
+    if (!(is >> px))
+        return is;
+    is >> py >> pz;
     point3d << px, py, pz;
     return is;
 }
@@ -15,11 +18,13 @@ std::istream &operator>>(std::istream &is, Eigen::Vector3d &point3d)
 std::istream &operator>>(std::istream &is, CamPoseType &camPoseType)
 {
     double rx, ry, rz, tx, ty, tz, f, k1, k2;
-    is >> rx >> ry >> rz >> tx >> ty >> tz >> f >> k1 >> k2;
+    if (!(is >> rx))
+        return is;
+    is >> ry >> rz >> tx >> ty >> tz >> f >> k1 >> k2;
     Eigen::Vector3d angleAxis(rx, ry, rz);
     Eigen::Vector3d t(tx, ty, tz);
     Eigen::Vector3d camParams(f, k1, k2);
-    auto R = angleAxis2R(angleAxis);
+    auto R = angleAxis2Q(angleAxis);
     camPoseType.pose = Sophus::SE3d(R, t);
     camPoseType.camParams = camParams;
 
@@ -36,12 +41,12 @@ VertexAndEdge::VertexAndEdge(const string &poseFile, const string &pointFile, co
 void VertexAndEdge::addPointVertex(SparseOptimizer &graph)
 {
     Eigen::Vector3d worldPoint;
-    int pointID = 0;
-    while (pointFile) {
-        pointFile >> worldPoint;
+    int pointID = 16;
+    while (pointFile >> worldPoint) {
         auto *pointVertex = new PointVertex;
         pointVertex->setId(pointID);
         pointVertex->setEstimate(worldPoint);
+        pointVertex->setMarginalized(true);
         graph.addVertex(pointVertex);
         pointVec.push_back(pointVertex);
 
@@ -53,8 +58,7 @@ void VertexAndEdge::addPoseVertex(SparseOptimizer &graph)
 {
     CamPoseType camPoseType;
     int poseID = 0;
-    while (poseFile) {
-        poseFile >> camPoseType;
+    while (poseFile >> camPoseType) {
         auto *poseVertex = new PoseVertex;
         poseVertex->setId(poseID);
         poseVertex->setEstimate(camPoseType);
@@ -67,18 +71,21 @@ void VertexAndEdge::addPoseVertex(SparseOptimizer &graph)
 
 void VertexAndEdge::addEdge(SparseOptimizer &graph)
 {
+    std::size_t pointSize = pointVec.size();
+    std::size_t poseSize = poseVec.size();
     int camID, pointID, edgeID = 0;
     double px, py;
     Eigen::Vector2d pixelPoint;
-    while (edgeFile) {
-        edgeFile >> camID >> pointID >> px >> py;
+    while (edgeFile >> camID) {
+        edgeFile >> pointID >> px >> py;
         pixelPoint << px, py;
         auto *edge = new PosePointEdge;
         edge->setId(edgeID);
         edge->setVertex(0, poseVec[camID]);
         edge->setVertex(1, pointVec[pointID]);
-        edge->setInformation(Eigen::Matrix2d::Identity());
         edge->setMeasurement(pixelPoint);
+        edge->setInformation(Eigen::Matrix2d::Identity());
+        edge->setRobustKernel(new g2o::RobustKernelHuber());
         graph.addEdge(edge);
 
         ++edgeID;

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 project(solveBAL)
 
 set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_BUILD_TYPE "Release")
 SET(G2O_LIBS g2o_stuff g2o_core cxsparse)
 
 find_package(Sophus REQUIRED)
@@ -23,11 +24,23 @@ add_executable(
         src/PointVertex.cpp
         src/PoseVertex.cpp
         src/PosePointEdge.cpp
-        include/PosePointEdge.h
         src/VertexAndEdge.cpp
 )
 target_link_libraries(
         ${PROJECT_NAME}
+        Sophus::Sophus
+        ${G2O_LIBS}
+        ${GLOG_LIBRARIES}
+)
+
+add_executable(
+        angleAxis2RTest
+        test/angleAxis2RTest.cpp
+        src/PoseVertex.cpp
+)
+
+target_link_libraries(
+        angleAxis2RTest
         Sophus::Sophus
         ${G2O_LIBS}
         ${GLOG_LIBRARIES}

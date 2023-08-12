@@ -2,6 +2,7 @@
 
 #include "g2o/core/base_vertex.h"
 #include "sophus/se3.hpp"
+#include "Eigen/Geometry"
 
 struct CamPoseType
 {
@@ -28,3 +29,5 @@ public:
 
 
 Eigen::Matrix3d angleAxis2R(const Eigen::Vector3d &angleAxis);
+
+Eigen::Quaterniond angleAxis2Q(const Eigen::Vector3d &angleAxis);
