@@ -40,3 +40,5 @@ target_link_libraries(
         Sophus::Sophus
         ${G2O_LIBS}
 )
+
+add_executable(lpNorm test/lpNormTest.cpp)
