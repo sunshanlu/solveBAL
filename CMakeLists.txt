@@ -1,21 +1,18 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.5)
 project(solveBAL)
 
 set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_BUILD_TYPE "Release")
-SET(G2O_LIBS g2o_stuff g2o_core cxsparse)
+set(CMAKE_BUILD_TYPE "Release")
+set(G2O_LIBS g2o_stuff g2o_core)
 
-find_package(Sophus REQUIRED)
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(G2O REQUIRED)
-find_package(Glog REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(Sophus REQUIRED)
 
 include_directories(
         include
-        ${Sophus_INCLUDE_DIRS}
-        ${G2O_INCLUDE_DIRS}
-        /usr/include/eigen3
-        ${GLOG_INCLUDE_DIRS}
+        ${EIGEN3_INCLUDE_DIR}
 )
 
 add_executable(
@@ -30,7 +27,6 @@ target_link_libraries(
         ${PROJECT_NAME}
         Sophus::Sophus
         ${G2O_LIBS}
-        ${GLOG_LIBRARIES}
 )
 
 add_executable(
@@ -43,5 +39,4 @@ target_link_libraries(
         angleAxis2RTest
         Sophus::Sophus
         ${G2O_LIBS}
-        ${GLOG_LIBRARIES}
 )

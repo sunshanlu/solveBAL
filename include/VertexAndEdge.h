@@ -23,13 +23,12 @@ public:
 
     void addVertexAndEdge(SparseOptimizer &graph)
     {
-        addPointVertex(graph);
         addPoseVertex(graph);
+        addPointVertex(graph);
         addEdge(graph);
     }
 
 private:
-
 
     void addPoseVertex(SparseOptimizer &graph);
 

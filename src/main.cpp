@@ -1,12 +1,13 @@
-#include "PosePointEdge.h"
-
 #include "g2o/core/block_solver.h"
 #include "g2o/solvers/dense/linear_solver_dense.h"
 #include "g2o/core/sparse_optimizer.h"
 #include "g2o/core/optimization_algorithm_levenberg.h"
+
 #include "VertexAndEdge.h"
+#include "PosePointEdge.h"
 
 #include <string>
+
 
 const std::string POINT_FILE_PATH = "../res/PointVertexFile.txt";
 const std::string POSE_FILE_PATH = "../res/CamVertexFile.txt";

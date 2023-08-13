@@ -71,8 +71,6 @@ void VertexAndEdge::addPoseVertex(SparseOptimizer &graph)
 
 void VertexAndEdge::addEdge(SparseOptimizer &graph)
 {
-    std::size_t pointSize = pointVec.size();
-    std::size_t poseSize = poseVec.size();
     int camID, pointID, edgeID = 0;
     double px, py;
     Eigen::Vector2d pixelPoint;
