@@ -1,5 +1,0 @@
-/home/lu/Project/solveBAL/build/CMakeFiles/solveBAL.dir
-/home/lu/Project/solveBAL/build/CMakeFiles/angleAxis2RTest.dir
-/home/lu/Project/solveBAL/build/CMakeFiles/lpNorm.dir
-/home/lu/Project/solveBAL/build/CMakeFiles/edit_cache.dir
-/home/lu/Project/solveBAL/build/CMakeFiles/rebuild_cache.dir
