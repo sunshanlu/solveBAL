@@ -22,6 +22,7 @@ add_executable(
         src/PoseVertex.cpp
         src/PosePointEdge.cpp
         src/VertexAndEdge.cpp
+        src/Normalizer.cpp
 )
 target_link_libraries(
         ${PROJECT_NAME}
