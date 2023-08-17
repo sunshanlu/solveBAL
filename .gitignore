@@ -31,5 +31,9 @@
 *.out
 *.app
 
+# Ignore .idea
+.idea/*
+.idea
+
 # Ignore build
 build/*
