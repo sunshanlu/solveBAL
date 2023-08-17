@@ -33,3 +33,5 @@
 
 # Ignore build path
 build/
+
+idea/
