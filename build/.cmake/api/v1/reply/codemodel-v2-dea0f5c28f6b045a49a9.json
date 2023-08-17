@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "solveBAL",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "angleAxis2RTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-angleAxis2RTest-Release-3c961d4e4e7f8a447f8d.json",
+					"name" : "angleAxis2RTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lpNorm::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lpNorm-Release-6a5595cfd1991d61bfb5.json",
+					"name" : "lpNorm",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "solveBAL::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-solveBAL-Release-9c5c00b0b15a1bd912f4.json",
+					"name" : "solveBAL",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/lu/Project/solveBAL/build",
+		"source" : "/home/lu/Project/solveBAL"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

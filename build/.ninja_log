@@ -1,0 +1,7 @@
+# ninja log v5
+0	4197	1692240255811221134	CMakeFiles/solveBAL.dir/src/PointVertex.cpp.o	f1df14d7047d8d3d
+1	4932	1692240256543492253	CMakeFiles/solveBAL.dir/src/PosePointEdge.cpp.o	a5644aea1d42d65d
+0	7280	1692240258888350481	CMakeFiles/solveBAL.dir/src/PoseVertex.cpp.o	57a63b3535a6efb1
+0	9729	1692240261341231070	CMakeFiles/solveBAL.dir/src/main.cpp.o	ab09a479eae7df01
+1	10956	1692240262565664477	CMakeFiles/solveBAL.dir/src/VertexAndEdge.cpp.o	c17cbd979faa6387
+10956	11020	1692240262629687045	solveBAL	46f14f7059566e3
