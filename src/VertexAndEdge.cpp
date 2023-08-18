@@ -31,7 +31,7 @@ std::istream &operator>>(std::istream &is, CamPoseType &camPoseType)
 }
 
 
-VertexAndEdge::VertexAndEdge(const Normalizer *normalizer, const string &edgeFile)
+VertexAndEdge::VertexAndEdge(Normalizer *normalizer, const string &edgeFile)
         : normalizer(normalizer), edgeFile(edgeFile)
 {
 

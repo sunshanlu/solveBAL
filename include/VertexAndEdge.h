@@ -25,7 +25,9 @@ public:
     using ifstream = std::ifstream;
     using SparseOptimizer = g2o::SparseOptimizer;
 
-    VertexAndEdge(const Normalizer *normalizer, const string &edgeFile);
+    VertexAndEdge(Normalizer *normalizer, const string &edgeFile);
+
+    void toNormalizer();
 
 private:
 
@@ -37,7 +39,7 @@ private:
 
     PointVec pointVec;
     PoseVec poseVec;
-    const Normalizer *normalizer;
+    Normalizer *normalizer;
     ifstream edgeFile;
 };
 

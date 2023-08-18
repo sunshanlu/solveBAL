@@ -23,10 +23,10 @@ void Normalizer::normalize()
     while (cameraFile >> camPose) {
         Eigen::Vector3d &trans = camPose.pose.translation();
         Eigen::Vector3d center = trans2Center(trans, camPose.pose.so3());
-
         Eigen::Vector3d centerNorm = scale * (center - medianPoint);
-        trans = center2Trans(centerNorm, camPose.pose.so3());
 
+        centerVec.push_back(centerNorm);
+        trans = center2Trans(centerNorm, camPose.pose.so3());
         poseVec.push_back(camPose);
     }
 }
@@ -111,5 +111,52 @@ void VertexAndEdge::addPoseVertex(SparseOptimizer &graph)
         poseVec.push_back(poseVertex);
 
         ++poseID;
+    }
+}
+
+void writePLYFile(const std::string &plyFile, Normalizer &normalizer, const bool &init)
+{
+    if (not init) {
+        std::size_t id = 0;
+        for (auto &pose: normalizer.getPoseVec()) {
+            const Eigen::Vector3d trans = pose.pose.translation();
+            const Sophus::SO3d so3D = pose.pose.so3();
+            normalizer.getCenterVec()[id] = trans2Center(trans, so3D);
+
+            ++id;
+        }
+    }
+
+    std::ofstream os(plyFile);
+    const Normalizer::CenterVec &centerVec = normalizer.getCenterVec();
+    const Normalizer::PointVec &pointVec = normalizer.getPointVec();
+    std::size_t pointsNum = centerVec.size() + pointVec.size();
+    os << "ply" << '\n'
+       << "format ascii 1.0" << '\n'
+       << "element vertex " << pointsNum << '\n'
+       << "property float x" << '\n'
+       << "property float y" << '\n'
+       << "property float z" << '\n'
+       << "property uchar red" << '\n'
+       << "property uchar green" << '\n'
+       << "property uchar blue" << '\n'
+       << "end_header" << std::endl;
+
+    for (const auto &center: centerVec)
+        os << center.x() << " " << center.y() << " " << center.z() << " " << "0 255 0\n";
+
+    for (const auto &point: pointVec)
+        os << point.x() << " " << point.y() << " " << point.z() << " " << "255 255 255\n";
+}
+
+void VertexAndEdge::toNormalizer()
+{
+    Normalizer::PointVec &points = normalizer->getPointVec();
+    Normalizer::PoseVec &poses = normalizer->getPoseVec();
+    for (std::size_t id = 0; id < pointVec.size(); id++) {
+        points[id] = pointVec[id]->estimate();
+    }
+    for (std::size_t id = 0; id < poseVec.size(); ++id) {
+        poses[id] = poseVec[id]->estimate();
     }
 }
