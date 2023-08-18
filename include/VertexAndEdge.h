@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <vector>
 #include <fstream>
@@ -10,8 +12,12 @@ class PoseVertex;
 
 struct CamPoseType;
 
+class Normalizer;
+
 class VertexAndEdge
 {
+    friend void addVertexAndEdge(VertexAndEdge &, g2o::SparseOptimizer &);
+
 public:
     using string = std::string;
     using PointVec = std::vector<PointVertex *>;
@@ -19,14 +25,7 @@ public:
     using ifstream = std::ifstream;
     using SparseOptimizer = g2o::SparseOptimizer;
 
-    VertexAndEdge(const string &poseFile, const string &pointFile, const string &edgeFile);
-
-    void addVertexAndEdge(SparseOptimizer &graph)
-    {
-        addPoseVertex(graph);
-        addPointVertex(graph);
-        addEdge(graph);
-    }
+    VertexAndEdge(const Normalizer *normalizer, const string &edgeFile);
 
 private:
 
@@ -38,11 +37,17 @@ private:
 
     PointVec pointVec;
     PoseVec poseVec;
-    ifstream poseFile;
-    ifstream pointFile;
+    const Normalizer *normalizer;
     ifstream edgeFile;
 };
 
 std::istream &operator>>(std::istream &is, Eigen::Vector3d &point3d);
 
 std::istream &operator>>(std::istream &is, CamPoseType &camPoseType);
+
+void addVertexAndEdge(VertexAndEdge &vertexAndEdge, g2o::SparseOptimizer &graph)
+{
+    vertexAndEdge.addPoseVertex(graph);
+    vertexAndEdge.addPointVertex(graph);
+    vertexAndEdge.addEdge(graph);
+}

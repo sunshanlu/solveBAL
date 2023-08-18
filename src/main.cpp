@@ -5,6 +5,7 @@
 
 #include "VertexAndEdge.h"
 #include "PosePointEdge.h"
+#include "Normalizer.h"
 
 #include <string>
 
@@ -21,14 +22,18 @@ int main(int argc, const char **argv)
     using LinearSolverType = g2o::LinearSolverDense<BlockSolverType::PoseMatrixType>;
 
     g2o::SparseOptimizer graph;
-    VertexAndEdge vertexAndEdge(POSE_FILE_PATH, POINT_FILE_PATH, EDGE_FILE_PATH);
+
+    Normalizer normalizer(POINT_FILE_PATH, POSE_FILE_PATH);
+    normalizer.normalize();
+
+    VertexAndEdge vertexAndEdge(&normalizer, EDGE_FILE_PATH);
     auto *algorithm = new g2o::OptimizationAlgorithmLevenberg(
             std::make_unique<BlockSolverType>(std::make_unique<LinearSolverType>())
     );
     graph.setAlgorithm(algorithm);
     graph.setVerbose(VERBOSE);
 
-    vertexAndEdge.addVertexAndEdge(graph);
+    addVertexAndEdge(vertexAndEdge, graph);
 
     graph.initializeOptimization();
     graph.optimize(MAX_ITERATIONS);

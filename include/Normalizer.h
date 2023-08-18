@@ -19,11 +19,20 @@ public:
 
     void normalize();
 
+    const PointVec &getPointVec() const
+    {
+        return pointVec;
+    }
+
+    const PoseVec &getPoseVec() const
+    {
+        return poseVec;
+    }
+
 
 private:
     void normalizePoint();
 
-    void normalizePose();
 
     ifstream pointFile;
     ifstream cameraFile;
@@ -31,9 +40,17 @@ private:
     PointVec pointVec;
     PoseVec poseVec;
 
+    double scale{};
+
+    Eigen::Vector3d medianPoint;
+
 };
 
 
 Eigen::Vector3d median(const Normalizer::PointVec &pointVec);
 
 double median(std::vector<double> &pointAxiss);
+
+Eigen::Vector3d trans2Center(const Eigen::Vector3d &trans, const Sophus::SO3d &so3D);
+
+Eigen::Vector3d center2Trans(const Eigen::Vector3d &centerNorm, const Sophus::SO3d &so3D);

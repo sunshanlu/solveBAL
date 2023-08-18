@@ -1,6 +1,5 @@
 #include "VertexAndEdge.h"
 #include "Eigen/Core"
-#include "PointVertex.h"
 #include "PoseVertex.h"
 #include "PosePointEdge.h"
 #include "g2o/core/robust_kernel_impl.h"
@@ -32,41 +31,10 @@ std::istream &operator>>(std::istream &is, CamPoseType &camPoseType)
 }
 
 
-VertexAndEdge::VertexAndEdge(const string &poseFile, const string &pointFile, const string &edgeFile)
-        : poseFile(poseFile), pointFile(pointFile), edgeFile(edgeFile)
+VertexAndEdge::VertexAndEdge(const Normalizer *normalizer, const string &edgeFile)
+        : normalizer(normalizer), edgeFile(edgeFile)
 {
 
-}
-
-void VertexAndEdge::addPointVertex(SparseOptimizer &graph)
-{
-    Eigen::Vector3d worldPoint;
-    int pointID = 16;
-    while (pointFile >> worldPoint) {
-        auto *pointVertex = new PointVertex;
-        pointVertex->setId(pointID);
-        pointVertex->setEstimate(worldPoint);
-        pointVertex->setMarginalized(true);
-        graph.addVertex(pointVertex);
-        pointVec.push_back(pointVertex);
-
-        ++pointID;
-    }
-}
-
-void VertexAndEdge::addPoseVertex(SparseOptimizer &graph)
-{
-    CamPoseType camPoseType;
-    int poseID = 0;
-    while (poseFile >> camPoseType) {
-        auto *poseVertex = new PoseVertex;
-        poseVertex->setId(poseID);
-        poseVertex->setEstimate(camPoseType);
-        graph.addVertex(poseVertex);
-        poseVec.push_back(poseVertex);
-
-        ++poseID;
-    }
 }
 
 void VertexAndEdge::addEdge(SparseOptimizer &graph)
