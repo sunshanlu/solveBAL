@@ -45,9 +45,4 @@ std::istream &operator>>(std::istream &is, Eigen::Vector3d &point3d);
 
 std::istream &operator>>(std::istream &is, CamPoseType &camPoseType);
 
-void addVertexAndEdge(VertexAndEdge &vertexAndEdge, g2o::SparseOptimizer &graph)
-{
-    vertexAndEdge.addPoseVertex(graph);
-    vertexAndEdge.addPointVertex(graph);
-    vertexAndEdge.addEdge(graph);
-}
+void addVertexAndEdge(VertexAndEdge &vertexAndEdge, g2o::SparseOptimizer &graph);

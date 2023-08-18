@@ -58,5 +58,9 @@ void VertexAndEdge::addEdge(SparseOptimizer &graph)
     }
 }
 
-
-
+void addVertexAndEdge(VertexAndEdge &vertexAndEdge, g2o::SparseOptimizer &graph)
+{
+    vertexAndEdge.addPoseVertex(graph);
+    vertexAndEdge.addPointVertex(graph);
+    vertexAndEdge.addEdge(graph);
+}
