@@ -71,7 +71,7 @@ solveBAL
 ```
 
 <div align="center">
-<img src="./figures/mindFigure.png" alt="mindFigure" title="mindFigure" width=70% />
+<img src="./figures/mindFigureEnglish.png" alt="mindFigure" title="mindFigure" width=70% />
 </div>
 
 

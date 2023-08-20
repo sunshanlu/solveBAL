@@ -22,10 +22,10 @@
 - 其余行为观测点在世界坐标系下的"X Y Z" 值
 
 ## 二、项目依赖
-- Ceres 2.1.0 安装指南：http://ceres-solver.org/installation.html
-- G2O 20230223 安装指南：https://github.com/RainerKuemmerle/g2o/releases
-- Eigen 3.4 安装指南：https://gitlab.com/libeigen/eigen/-/releases/3.4.0
-- Sophus 1.22.10 安装指南：https://github.com/strasdat/Sophus/releases/tag/1.22.10
+- [Ceres 2.1.0 安装指南](http://ceres-solver.org/installation.html)
+- [G2O 20230223 安装指南](https://github.com/RainerKuemmerle/g2o/releases)
+- [Eigen 3.4 安装指南](https://gitlab.com/libeigen/eigen/-/releases/3.4.0)
+- [Sophus 1.22.10 安装指南](https://github.com/strasdat/Sophus/releases/tag/1.22.10)
 - MeshLab `sudo apt install meshlab`
 
 ## 三、BAL问题拆解
