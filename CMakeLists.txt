@@ -43,3 +43,4 @@ target_link_libraries(
 )
 
 add_executable(lpNorm test/lpNormTest.cpp)
+
