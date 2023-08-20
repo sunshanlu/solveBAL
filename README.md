@@ -118,7 +118,7 @@ cmake .. && cmake --bulid . --target solveBAL
 ```
 
 ```shell
-meshlab Final.ply Init.ply
+meshlab ../result/Init.ply ../result/Final.ply
 ```
 
 ## 6. Result
