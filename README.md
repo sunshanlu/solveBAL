@@ -91,8 +91,14 @@ $$
 ### Camera point normalization
 
 $$
-C = -R^{-1} * t \\
-C_{norm} = \alpha(C - M)\\
+C = -R^{-1} * t
+$$
+
+$$
+C_{norm} = \alpha(C - M)
+$$
+
+$$
 t_{norm} = -R * C_{norm}
 $$
 
