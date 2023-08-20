@@ -66,7 +66,7 @@ solveBAL
 ```
 
 <div align="center">
-<img src="../solveBAL/figures/mindFigure.png" alt="mindFigure" title="mindFigure" width=70% />
+<img src="./figures/mindFigure.png" alt="mindFigure" title="mindFigure" width=70% />
 </div>
 
 ## 三、数据标准化
@@ -113,10 +113,10 @@ meshlab Final.ply Init.ply
 <div align="center">
     <div>
         <p>优化前：</p>
-        <img src="../solveBAL/result/init.png" alt="init.png" title="优化前" width=70%/>
+        <img src="./result/init.png" alt="init.png" title="优化前" width=70%/>
     </div>
     <div>
         <p>优化后：</p>
-        <img src="../solveBAL/result/final.png" alt="final.png" title="优化后" width=70%/>
+        <img src="./result/final.png" alt="final.png" title="优化后" width=70%/>
     </div>
 </div>
