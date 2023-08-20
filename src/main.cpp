@@ -9,7 +9,6 @@
 
 #include <string>
 
-
 const std::string POINT_FILE_PATH = "../res/PointVertexFile.txt";
 const std::string POSE_FILE_PATH = "../res/CamVertexFile.txt";
 const std::string EDGE_FILE_PATH = "../res/EdgeFile.txt";
@@ -31,8 +30,7 @@ int main(int argc, const char **argv)
 
     VertexAndEdge vertexAndEdge(&normalizer, EDGE_FILE_PATH);
     auto *algorithm = new g2o::OptimizationAlgorithmLevenberg(
-            std::make_unique<BlockSolverType>(std::make_unique<LinearSolverType>())
-    );
+        std::make_unique<BlockSolverType>(std::make_unique<LinearSolverType>()));
     graph.setAlgorithm(algorithm);
     graph.setVerbose(VERBOSE);
 

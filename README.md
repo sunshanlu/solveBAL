@@ -1,89 +1,94 @@
-# solveBAL
+<div>
+    <a href="./README.md">English</a>|
+    <a href="./README.zh-CN.md">简体中文</a>
+</div>
 
-通过G2O库解决BAL问题，其具体内容包括
+# <center>solveBAL
 
-- BAL问题的解决以及文件拆解
-- 相机位置顶点的定义
-- 观测点位置顶点的定义
-- 观测方程边的定义
-- BAL相机点和观测点的标准化
-- 点云`ply`文件的写入和Meshlab展示
+Solving the Bundle Adjustment (BAL) Problem using the G2O Library. The specific contents include:
 
-## 一、文件内容描述
-在res文件夹中，存有`BALProblem.txt`文件，其文件格式如下：
-- 第一行为 "相机位姿数", "观测路标数", "产生的观测方程数"
-- 第二行至83719行为 "相机位姿id", "观测路标id", "像素坐标系下x", "像素坐标系下y"
-- 第83720行至83864行为 至上而下为"相机的旋转向量(三个数)" "相机的平移向量(三个数)" "相机的内参f" "相机的畸变参数k1 k2"
-- 其余行为观测点在世界坐标系下的"X Y Z" 值
+- Solution to the BAL problem and file breakdown
+- Definition of camera pose vertices
+- Definition of observation point vertices
+- Definition of observation equation edges
+- Normalization of BAL camera and observation points
+- Writing the point cloud `ply` file and displaying in MeshLab
 
-## 二、项目依赖
-- Ceres 2.1.0 安装指南：http://ceres-solver.org/installation.html
-- G2O 20230223 安装指南：https://github.com/RainerKuemmerle/g2o/releases
-- Eigen 3.4 安装指南：https://gitlab.com/libeigen/eigen/-/releases/3.4.0
-- Sophus 1.22.10 安装指南：https://github.com/strasdat/Sophus/releases/tag/1.22.10
-- MeshLab `sudo apt install meshlab`
+## 1. File Content Description
+In the "res" folder, there is a file named "BALProblem.txt" with the following format:
+- The first line contains "Number of camera poses", "Number of observed landmarks", "Number of generated observation equations"
+- The next lines (2nd to 83719th) contain "Camera pose id", "Observed landmark id", "Pixel coordinate x", "Pixel coordinate y"
+- Lines from 83720th to 83864th represent, from top to bottom, "Camera rotation vector (three values)", "Camera translation vector (three values)", "Camera intrinsic parameter f", "Camera distortion parameters k1 and k2"
+- Remaining lines contain "X Y Z" values of observation points in the world coordinate system.
 
-## 二、BAL问题拆解
-文件的目录结构如下：
+## 2. Project Dependencies
+- [Ceres 2.1.0 Installation Guide](http://ceres-solver.org/installation.html)
+- [G2O 20230223 Installation Guide](https://github.com/RainerKuemmerle/g2o/releases)
+- [Eigen 3.4 Installation Guide](https://gitlab.com/libeigen/eigen/-/releases/3.4.0)
+- [Sophus 1.22.10 Installation Guide](https://github.com/strasdat/Sophus/releases/tag/1.22.10)
+- MeshLab Installation: `sudo apt install meshlab`
+
+## 3. BAL Problem Breakdown
+The directory structure of the project is as follows:
 ```shell
 solveBAL
-├── build                            # 构建目录
-├── cmake                            # cmake脚本目录，寻找Eigen3和G2O库
+├── build                            # build directory
+├── cmake                            # cmake script directory, looking for Eigen3 and G2O libraries
 │   ├── FindEigen3.cmake
 │   └── FindG2O.cmake
 ├── CMakeLists.txt
 ├── figures
-├── include                          # 头文件目录
-│   ├── Normalizer.h                 # Normalizer 类定义的头文件
-│   ├── PointVertex.h                # PointVertex 类定义的头文件
-│   ├── PosePointEdge.h              # PosePointEdge 类定义的头文件
-│   ├── PoseVertex.h                 # PoseVertex 类定义的头文件
-│   └── VertexAndEdge.h              # VertexAndEdge 类定义的头文件
+├── include                          # Header directory
+│   ├── Normalizer.h                 # Header file for Normalizer class definition
+│   ├── PointVertex.h                # Header file for PointVertex class definition
+│   ├── PosePointEdge.h              # Header file for PosePointEdge class definition
+│   ├── PoseVertex.h                 # Header file for PoseVertex class definition
+│   └── VertexAndEdge.h              # Header file for VertexAndEdge class definition
 ├── LICENSE
 ├── README.md
-├── res                              # 资源文件目录
-│   ├── BALProblem.txt               # 存放BAL问题的文件 
-│   ├── CamVertexFile.txt            # splitBADataset.py脚本生成的相机位姿信息
-│   ├── EdgeFile.txt                 # splitBADataset.py脚本生成的观测方程信息
-│   └── PointVertexFile.txt          # splitBADataset.py脚本生成的世界坐标系下的观测点信息
-├── result                           # 程序结果目录
-│   ├── Final.ply                    # solveBAL 目标生成的优化后的点云文件
-│   ├── final.png                    # 在MeshLab 中优化后的BAL问题展示
-│   ├── Init.ply                     # solveBAL 目标生成的优化前的点云文件
-│   └── init.png                     # 在MeshLab 中优化前的BAL问题展示
-├── scripts                          # 脚本文件目录
-│   └── splitBADataset.py            # 拆分BALProblem.txt的Python脚本
-├── src                              # 源文件目录
-│   ├── main.cpp                     # solveBAL target的程序入口
-│   ├── Normalizer.cpp               # Normalizer 类定义的源文件
-│   ├── PointVertex.cpp              # PointVertex 类定义的源文件
-│   ├── PosePointEdge.cpp            # PosePointEdge 类定义的源文件
-│   ├── PoseVertex.cpp               # PoseVertex 类定义的源文件
-│   └── VertexAndEdge.cpp            # VertexAndEdge 类定义的源文件
-└── test                             # 测试文件夹目录
-    ├── angleAxis2RTest.cpp          # angleAxis2R函数测试
-    └── lpNormTest.cpp               # Eigen::Vector中的lpNorm函数测试
+├── res                              # Resource file directory
+│   ├── BALProblem.txt               # File to store BAL questions
+│   ├── CamVertexFile.txt            # Camera pose information generated by the splitBADataset.py script
+│   ├── EdgeFile.txt                 # Observation equation information generated by the splitBADataset.py script
+│   └── PointVertexFile.txt          # Observation point information generated by the splitBADataset.py script
+├── result                           # program results directory
+│   ├── Final.ply                    # Optimized point cloud file generated by solveBAL target
+│   ├── final.png                    # Optimized BAL problem display in MeshLab
+│   ├── Init.ply                     # The unoptimized point cloud file generated by the solveBAL target
+│   └── init.png                     # BAL problem display before optimization in MeshLab
+├── scripts                          # script file directory
+│   └── splitBADataset.py            # Python script to split BALProblem.txt
+├── src                              # source file directory
+│   ├── main.cpp                     # Program entry of solveBAL target
+│   ├── Normalizer.cpp               # Source file for Normalizer class definition
+│   ├── PointVertex.cpp              # Source file for PointVertex class definition
+│   ├── PosePointEdge.cpp            # Source file for PosePointEdge class definition
+│   ├── PoseVertex.cpp               # Source file for PoseVertex class definition
+│   └── VertexAndEdge.cpp            # Source file for VertexAndEdge class definition
+└── test                             # Test folder directory
+    ├── angleAxis2RTest.cpp          # angleAxis2R function test
+    └── lpNormTest.cpp               # lpNorm function test in Eigen::Vector
 ```
 
 <div align="center">
 <img src="./figures/mindFigure.png" alt="mindFigure" title="mindFigure" width=70% />
 </div>
 
-## 三、数据标准化
 
-标准化或归一化，是将BAL问题中涉及的所有三维点的中心置0，然后进行一个合适尺度的==缩放==，使得整个优化过程更加稳定，防止在极端情况下处理很大或者有很大偏移的BA问题。
+## 4. Data Standardization
+Standardization or normalization is to set the center of all three-dimensional points involved in the BAL problem to 0, and then perform a scaling of an appropriate scale to make the entire optimization process more stable and prevent the processing from being large or ineffective in extreme cases. BA problems with large offsets.
 
-### 观测点标准化
 
+### Observation point standardization
 $$
 P_{norm} = \alpha(P-M)
 $$
 
-- $P_{norm}$，标准化或归一化后的观测点
-- $\alpha$，缩放倍率
-- $M$，观测点的中位数
+- $P_{norm}$, normalized or normalized observation points
+- $\alpha$, zoom factor
+- $M$, the median of observation points
 
-### 相机点标准化
+### Camera point normalization
 
 $$
 C = -R^{-1} * t \\
@@ -91,13 +96,14 @@ C_{norm} = \alpha(C - M)\\
 t_{norm} = -R * C_{norm}
 $$
 
-- $C$，相机在旋转之前世界坐标系的位置
-- $R$，相机的旋转矩阵
-- $t$，相机在世界坐标系中的位置
-- $C_{norm}$，标准化后的$C$
-- $t_{norm}$，标准化后的$t$
+- $C$, the position of the camera in the world coordinate system before rotation
+- $R$, the rotation matrix of the camera
+- $t$, the position of the camera in the world coordinate system
+- $C_{norm}$, normalized $C$
+- $t_{norm}$, normalized $t$
 
-## 四、项目运行
+
+## 5. Project running
 ```shell
 mkdir build && cd build
 ```
@@ -109,14 +115,14 @@ cmake .. && cmake --bulid . --target solveBAL
 meshlab Final.ply Init.ply
 ```
 
-## 五、结果对比
+## 6. Result
 <div align="center">
     <div>
-        <p>优化前：</p>
-        <img src="./result/init.png" alt="init.png" title="优化前" width=70%/>
+        <p>Before optimization:</p>
+        <img src="./result/init.png" alt="init.png" title="Before optimization" width=70%/>
     </div>
     <div>
-        <p>优化后：</p>
-        <img src="./result/final.png" alt="final.png" title="优化后" width=70%/>
+        <p>Optimized:</p>
+        <img src="./result/final.png" alt="final.png" title="Optimized" width=70%/>
     </div>
 </div>
